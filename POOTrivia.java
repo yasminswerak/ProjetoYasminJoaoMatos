@@ -8,5 +8,11 @@ public class POOTrivia {
     private ArrayList<Pergunta> perguntas;
     
     //preencher array com as perguntas e respostas?
-    public void criarArrayPerguntas(){}
+    public void criarArrayPerguntas(){
+
+/* pensei em ser assim:
+persguntas.add(new Pergunta(pergunta, opção1, opção2, opção3, ...);
+        */
+        
+    }
 }
