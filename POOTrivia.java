@@ -1,18 +1,49 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
+/**
+ * Classe publica POOTrivia
+ */
 public class POOTrivia {
-    // para sabermos se estamos antes ou depois da terceira pergunta:
-    protected boolean antesTerceiraPergunta;
-    
-    //array com as perguntas e respostas?
+    /**
+     * ArrayList com todas as perguntas
+     */
     private ArrayList<Pergunta> perguntas;
-    
-    //preencher array com as perguntas e respostas?
-    public void criarArrayPerguntas(){
 
-/* pensei em ser assim:
-persguntas.add(new Pergunta(pergunta, opção1, opção2, opção3, ...);
-        */
-        
+    /**
+     * ArrayList com todos os jogos realizados
+     */
+    private ArrayList<Jogo> jogos;
+
+
+    public POOTrivia(){
+        Ficheiro f = new Ficheiro();
+        this.perguntas = f.lerPerguntas();
+        this.jogos = f.lerJogos();
+    }
+
+
+    public ArrayList<Pergunta> getPerguntas() {
+        return perguntas;
+    }
+
+    public void setPerguntas(ArrayList<Pergunta> perguntas) {
+        this.perguntas = perguntas;
+    }
+
+    public ArrayList<Jogo> getJogos() {
+        return jogos;
+    }
+
+    public void setJogos(ArrayList<Jogo> jogos) {
+        this.jogos = jogos;
+    }
+
+    //Main
+    public static void main(String[] args) {
+        POOTrivia app = new POOTrivia();
+        //Scanner stdin = new Scanner(System.in);
+
+
     }
 }
