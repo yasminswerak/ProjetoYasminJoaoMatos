@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Classe abstrata Desporto filha de Pergunta
  */
-public abstract class Desporto extends Pergunta{
+public abstract class Desporto extends Pergunta implements Serializable {
     /**
      * Construtor vazio de Desporto
      */

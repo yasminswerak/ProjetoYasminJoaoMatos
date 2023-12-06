@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+
 
 /**
  * Classe publica POOTrivia
@@ -11,15 +10,41 @@ public class POOTrivia {
      * ArrayList com todas as perguntas
      */
     private ArrayList<Pergunta> perguntas;
+    private Ficheiro ficheiro;
 
 
     public POOTrivia(){
-        Ficheiro f = new Ficheiro();
-        this.perguntas = f.lerPerguntas();
+        this.ficheiro = new Ficheiro();
+        this.perguntas = ficheiro.lerPerguntas();
     }
 
     public int getNumeroDePerguntas(){
         return perguntas.size();
+    }
+
+    public ArrayList<Jogo> getTop3(){
+        ArrayList<Jogo> top3 = new ArrayList<Jogo>();
+        //adicionar 3 jogos vazios para possibilitar comparações
+        top3.add(new Jogo());
+        top3.add(new Jogo());
+        top3.add(new Jogo());
+        for (Jogo j: ficheiro.lerJogos()){
+            if(j.calculaPontuacao() > top3.get(0).calculaPontuacao()){
+                top3.set(2,top3.get(1));
+                top3.set(1,top3.get(0));
+                top3.set(0, j);
+            } else if (j.calculaPontuacao() > top3.get(1).calculaPontuacao()) {
+                top3.set(2,top3.get(1));
+                top3.set(1, j);
+            } else if (j.calculaPontuacao() > top3.get(2).calculaPontuacao()) {
+                top3.set(2,j);
+            }
+        }
+        return top3;
+    }
+
+    public void escreverFicheiroJogo(Jogo j){
+        ficheiro.escreverFicheiroJogo(j);
     }
 
     public Pergunta getPerguntaNum(int num){

@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  * Classe publica Arte filha de Pergunta
  */
-public class Arte extends Pergunta {
+public class Arte extends Pergunta implements Serializable {
     /**
      * Construtor vazio de Arte
      */

@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Classe publica DataHora
  */
-public class DataHora {
+public class DataHora implements Serializable {
     //atributos:
     /**
      * Atributos int de dia, mes e ano
@@ -34,6 +36,14 @@ public class DataHora {
         this.ano = ano;
         this.hora = hora;
         this.minuto = minuto;
+    }
+
+    public String toStringApp(){
+        return "%02d/%02d/%04d - %02d:%02d".formatted(dia,mes,ano,hora,minuto);
+    }
+
+    public String toStringFicheiro(){
+        return "%04d%02d%02d%02d%02d".formatted(ano,mes,dia,hora,minuto);
     }
 
     //getters e setters:

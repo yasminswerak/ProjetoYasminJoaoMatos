@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Classe abstrata Pergunta
  */
-public abstract class Pergunta {
+public abstract class Pergunta implements Serializable {
     //atributos:
     /**
      * Atributos String enunciado e resposta

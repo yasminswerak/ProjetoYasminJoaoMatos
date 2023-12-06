@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Classe publica Natacao filha de Desporto
  */
-public class Natacao extends Desporto{
+public class Natacao extends Desporto implements Serializable {
     /**
      * Construtor vazio de Natacao
      */

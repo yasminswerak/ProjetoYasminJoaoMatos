@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Classe publica Ski filha de Desporto
  */
-public class Ski extends Desporto{
+public class Ski extends Desporto implements Serializable {
 
     /**
      * Construtor vazio de Ski

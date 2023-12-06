@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Classe publica Futebol filha de desporto
  */
-public class Futebol extends Desporto{
+public class Futebol extends Desporto implements Serializable {
     /**
      * Atributos String para as respostas que sao nomes (respostaNome) e para as respostas que sao numeros das camisas (respostaCamisa)
      */
@@ -42,7 +44,7 @@ public class Futebol extends Desporto{
      * @return numero das camisas (opcoes dificeis)
      */
     @Override
-    public String[] getOpcoesDificil() {
+    public String[] getOpcoesDificil(){
         super.resposta = respostaCamisa;
         return camisas;
     }

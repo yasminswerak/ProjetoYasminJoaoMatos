@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Classe Ciencias filha de Pergunta
  */
-public class Ciencias extends Pergunta{
+public class Ciencias extends Pergunta implements Serializable {
     /**
      * Arrays opcoesFaceis e opcoesDificeis de Strings
      */

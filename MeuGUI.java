@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MeuGUI extends JFrame {
@@ -41,6 +42,9 @@ public class MeuGUI extends JFrame {
         novoJogo = new JMenuItem("Novo Jogo");
         top3 = new JMenuItem("Top 3");
         sair = new JMenuItem("Sair");
+        novoJogo.addActionListener(bAL);
+        top3.addActionListener(bAL);
+        sair.addActionListener(bAL);
         menu.add(novoJogo);
         menu.add(top3);
         menu.add(sair);
@@ -50,15 +54,19 @@ public class MeuGUI extends JFrame {
         inicio = new JPanel();
         inicio.setLayout(new GridLayout(2,1));
         iniciar = new JButton("Iniciar");
-        textoIniciar = new JLabel("Jogo Super Fixe de Perguntas");
+        textoIniciar = new JLabel("POOTrivia");
         textoIniciar.setHorizontalAlignment(JLabel.CENTER);
         iniciar.addActionListener(bAL);
         inicio.add(textoIniciar);
         inicio.add(iniciar);
+        inicio.setBackground(new Color(250, 207, 225));
 
 
         pergunta = new JPanel();
         topTres = new JPanel();
+        pergunta.setLayout(new BoxLayout(pergunta, BoxLayout.Y_AXIS));
+        topTres.setLayout(new GridLayout(4,1));
+        topTres.setBackground(new Color(250, 207, 225));
 
         cl = new CardLayout();
         painelPrincipal = new JPanel(cl);
@@ -70,8 +78,9 @@ public class MeuGUI extends JFrame {
         cl.show(painelPrincipal, "inicio");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setMinimumSize(new Dimension(300, 300));
-        this.setSize(300, 300);
+        this.setMinimumSize(new Dimension(400, 400));
+        this.setSize(400, 400);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
@@ -80,13 +89,20 @@ public class MeuGUI extends JFrame {
             acabaJogo();
         }else{
             limpaPergunta();
-
             do{
                 num = random.nextInt(app.getNumeroDePerguntas());
             }while (j.jaRespondida(app.getPerguntaNum(num)));
+            JPanel numeroPergunta = new JPanel();
+            JPanel enunciado = new JPanel();
+            JPanel opcoes = new JPanel();
+            numeroPergunta.setBackground(new Color(250, 207, 225));
+            enunciado.setBackground(new Color(250, 207, 225));
+            opcoes.setBackground(new Color(250, 207, 225));
             Pergunta p = app.getPerguntaNum(num);
-            pergunta.add(new JLabel("Pergunta %d:".formatted(j.perguntasRespondidas() + 1)));
-            pergunta.add(new JLabel(p.enunciado));
+            JLabel labelPergunta = new JLabel("Pergunta %d:".formatted(j.perguntasRespondidas() + 1));
+            labelPergunta.setForeground(new Color(230, 14, 106));
+            numeroPergunta.add(labelPergunta);
+            enunciado.add(new JLabel(p.enunciado));
             if (j.perguntasRespondidas() >= 3){
                 for(String s: p.getOpcoesDificil()){
                     JButton button = new JButton(s);
@@ -95,7 +111,7 @@ public class MeuGUI extends JFrame {
                     }else{
                         button.addActionListener(eAL);
                     }
-                    pergunta.add(button);
+                    opcoes.add(button);
                 }
             }else{
                 for(String s: p.getOpcoesFacil()){
@@ -105,18 +121,45 @@ public class MeuGUI extends JFrame {
                     }else{
                         button.addActionListener(eAL);
                     }
-                    pergunta.add(button);
+                    opcoes.add(button);
                 }
             }
+            pergunta.add(numeroPergunta);
+            pergunta.add(enunciado);
+            pergunta.add(opcoes);
             cl.show(painelPrincipal, "pergunta");
         }
     }
 
     public void acabaJogo(){
-        //TODO pedir nome no final e guardar ficheiro
-        JOptionPane.showMessageDialog(null, "Tiveste %d pontos!".formatted(jogo.calculaPontuacao()), "Fim de Jogo!", JOptionPane.INFORMATION_MESSAGE);
-        //TODO mudar para Top3
-        cl.show(painelPrincipal, "inicio");
+        String nome = "";
+        do {
+            nome = JOptionPane.showInputDialog(pergunta, "Tiveste %d pontos!\nInsira o seu nome:".formatted(jogo.calculaPontuacao()), "Fim de Jogo!", JOptionPane.INFORMATION_MESSAGE);
+        } while (!nome.matches("[A-Za-z ]+"));
+        jogo.setNomeUtilizador(nome);
+        app.escreverFicheiroJogo(jogo);
+        mostraTopTres();
+    }
+
+    public void mostraTopTres(){
+        limpaTopTres();
+        ArrayList<Jogo> top3List = app.getTop3();
+        //Verificar se tem algum jogo!!
+        if(top3List.get(0).calculaPontuacao() == 0){
+            topTres.add(new JLabel("Nenhum jogo efetuado :("));
+        }else{
+            JLabel titulo = new JLabel("--- Top 3 ---", JLabel.CENTER);
+            topTres.add(titulo);
+            topTres.add(new JLabel("1º Lugar: %s - %d pontos (%s)".formatted(top3List.get(0).getNomeUtilizador(), top3List.get(0).calculaPontuacao(), top3List.get(0).getDataHora().toStringApp()), JLabel.CENTER));
+            if (top3List.get(1).calculaPontuacao() != 0) {
+                topTres.add(new JLabel("2º Lugar: %s - %d pontos (%s)".formatted(top3List.get(1).getNomeUtilizador(), top3List.get(1).calculaPontuacao(), top3List.get(1).getDataHora().toStringApp()), JLabel.CENTER));
+            }
+            if (top3List.get(2).calculaPontuacao() != 0) {
+                topTres.add(new JLabel("3º Lugar: %s - %d pontos (%s)".formatted(top3List.get(2).getNomeUtilizador(), top3List.get(2).calculaPontuacao(), top3List.get(2).getDataHora().toStringApp()), JLabel.CENTER));
+            }
+        }
+
+        cl.show(painelPrincipal, "topTres");
     }
 
     public void limpaTopTres(){
@@ -133,16 +176,21 @@ public class MeuGUI extends JFrame {
     private class ButtonActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == iniciar){
+            if (e.getSource() == iniciar | e.getSource() == novoJogo){
                 jogo = new Jogo();
                 mostraPergunta(jogo);
+            } else if (e.getSource() == top3) {
+                mostraTopTres();
+            } else if (e.getSource() == sair) {
+                setVisible(false);
+                dispose();
             }
         }
     }
     private class CertoActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(null,"Boa! Ganhaste %d pontos!".formatted(app.getPerguntaNum(num).valorPergunta()));
+            JOptionPane.showMessageDialog(pergunta,"Boa! Ganhaste %d pontos!".formatted(app.getPerguntaNum(num).valorPergunta()));
             jogo.acertouPergunta(app.getPerguntaNum(num));
             mostraPergunta(jogo);
         }
@@ -150,7 +198,7 @@ public class MeuGUI extends JFrame {
     private class ErradoActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(null,"Erraste ;(");
+            JOptionPane.showMessageDialog(pergunta,"Erraste ;(");
             jogo.errouPergunta(app.getPerguntaNum(num));
             mostraPergunta(jogo);
         }

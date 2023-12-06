@@ -82,7 +82,7 @@ public class Ficheiro {
                 oIS.close(); // fecha objeto
             }
         }catch (Exception e){
-            System.out.println("Erro ao ler ficheiro de jogo!");
+            JOptionPane.showMessageDialog(null, "Erro ao ler ficheiro de jogo!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         return jogos;
     }
@@ -93,7 +93,12 @@ public class Ficheiro {
      */
     public void escreverFicheiroJogo(Jogo j){
         DataHora d = j.getDataHora();
-        File file = new File("./Jogos/%4d-%2d-%2d;%2d:%2d.dat".formatted(d.getAno(), d.getMes(), d.getDia(), d.getHora(), d.getMinuto()));
+        String iniciais = "";
+        String[] dividido = j.getNomeUtilizador().split(" ");
+        for (String s: dividido){
+            iniciais = iniciais.concat(s.substring(0,1));
+        }
+        File file = new File("./Jogos/pootrivia_jogo_%s_%s.dat".formatted(d.toStringFicheiro(), iniciais));
         try{
             FileOutputStream fOS = new FileOutputStream(file);
             ObjectOutputStream oOS = new ObjectOutputStream(fOS);
@@ -101,7 +106,7 @@ public class Ficheiro {
             fOS.close();
             oOS.close();
         }catch (Exception e){
-            System.out.println("Erro ao escrever ficheiro de jogo!!");
+            JOptionPane.showMessageDialog(null, "Erro ao escrever ficheiro de jogo!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 

@@ -138,7 +138,7 @@ public class Jogo implements Serializable {
 
     /**
      * Setter de Erradas
-     * @param erradas ArrayList de erradas 
+     * @param erradas ArrayList de erradas
      */
     public void setErradas(ArrayList<Pergunta> erradas) {
         this.erradas = erradas;
