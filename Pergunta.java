@@ -44,6 +44,12 @@ public abstract class Pergunta {
         this.opcoes = opcoes;
     }
 
+    public Pergunta(String enunciado, String resposta) {
+        this.enunciado = enunciado;
+        this.pontos = 5;
+        this.resposta = resposta;
+    }
+
     //getters e setters:
 
     /**

@@ -1,4 +1,6 @@
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -10,18 +12,19 @@ public class POOTrivia {
      */
     private ArrayList<Pergunta> perguntas;
 
-    /**
-     * ArrayList com todos os jogos realizados
-     */
-    private ArrayList<Jogo> jogos;
-
 
     public POOTrivia(){
         Ficheiro f = new Ficheiro();
         this.perguntas = f.lerPerguntas();
-        this.jogos = f.lerJogos();
     }
 
+    public int getNumeroDePerguntas(){
+        return perguntas.size();
+    }
+
+    public Pergunta getPerguntaNum(int num){
+        return perguntas.get(num);
+    }
 
     public ArrayList<Pergunta> getPerguntas() {
         return perguntas;
@@ -31,19 +34,15 @@ public class POOTrivia {
         this.perguntas = perguntas;
     }
 
-    public ArrayList<Jogo> getJogos() {
-        return jogos;
-    }
-
-    public void setJogos(ArrayList<Jogo> jogos) {
-        this.jogos = jogos;
-    }
 
     //Main
     public static void main(String[] args) {
         POOTrivia app = new POOTrivia();
-        //Scanner stdin = new Scanner(System.in);
-
+        if (app.getNumeroDePerguntas() >= 5) {
+            new MeuGUI(app);
+        }else{
+            JOptionPane.showMessageDialog(null, "O Ficheiro de perguntas possiu menos de 5 perguntas!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
 
     }
 }
