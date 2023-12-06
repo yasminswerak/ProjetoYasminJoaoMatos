@@ -27,12 +27,20 @@ public class Futebol extends Desporto{
         this.camisas = camisas;
     }
 
+    /**
+     * Metodo Override que pega as opcoes faceis
+     * @return nomes (opcoes faceis)
+     */
     @Override
     public String[] getOpcoesFacil() {
         super.resposta = respostaNome;
         return nomes;
     }
 
+    /**
+     * Metodo Override que pega as opcoes dificeis
+     * @return numero das camisas (opcoes dificeis)
+     */
     @Override
     public String[] getOpcoesDificil() {
         super.resposta = respostaCamisa;

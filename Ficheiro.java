@@ -17,8 +17,6 @@ public class Ficheiro {
      * Metodo para ler as perguntas do ficheiro texto
      * @return
      */
-
-
     public ArrayList<Pergunta> lerPerguntas(){
         File f = new File("pootrivia.txt");
         ArrayList<Pergunta> perguntas = new ArrayList<Pergunta>();
@@ -65,6 +63,10 @@ public class Ficheiro {
         return perguntas;
     }
 
+    /**
+     * Metodo para ler os jogos do ficheiro de objetos
+     * @return jogos
+     */
     public ArrayList<Jogo> lerJogos(){
         ArrayList<Jogo> jogos = new ArrayList<Jogo>();
         try{
@@ -85,6 +87,10 @@ public class Ficheiro {
         return jogos;
     }
 
+    /**
+     * Metodo para escrever no ficheiro de objetos
+     * @param j Jogo
+     */
     public void escreverFicheiroJogo(Jogo j){
         DataHora d = j.getDataHora();
         File file = new File("./Jogos/%4d-%2d-%2d;%2d:%2d.dat".formatted(d.getAno(), d.getMes(), d.getDia(), d.getHora(), d.getMinuto()));
