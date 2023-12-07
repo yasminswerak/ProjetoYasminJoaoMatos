@@ -63,10 +63,10 @@ public class POOTrivia {
     //Main
     public static void main(String[] args) {
         POOTrivia app = new POOTrivia();
-        if (app.getNumeroDePerguntas() >= 5) {
+        if (app.getNumeroDePerguntas() >= 10) {
             new MeuGUI(app);
         }else{
-            JOptionPane.showMessageDialog(null, "O Ficheiro de perguntas possiu menos de 5 perguntas!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "O Ficheiro de perguntas possiu menos de 10 perguntas!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
     }
