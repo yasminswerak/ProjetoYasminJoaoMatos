@@ -17,26 +17,75 @@ public class MeuGUI extends JFrame {
      * Objeto da classe Jogo
      */
     private Jogo jogo;
+    /**
+     * Objeto da classe Random
+     */
     private Random random;
+    /**
+     * Objeto para possibilitar a troca de paineis
+     */
     private CardLayout cl;
+    /**
+     * Objeto painel principal (com CardLayout)
+     */
     private JPanel painelPrincipal;
+    /**
+     * Objeto painel inicial: bem vindo/botao de iniciar
+     */
     private JPanel inicio;
+    /**
+     * Objeto painel com o numero da pergunta, enunciado e opcoes
+     */
     private JPanel pergunta;
+    /**
+     * Objeto painel com os top 3
+     */
     private JPanel topTres;
+    /**
+     * Objeto para a barra de menu
+     */
     private JMenuBar menuBar;
+    /**
+     * Objeto menu
+     */
     private JMenu menu;
+    /**
+     * Texto iniciar POOTrivia
+     */
     private JLabel textoIniciar;
+    /**
+     * Botao para iniciar o jogo
+     */
     private JButton iniciar;
+    /**
+     * Item novo jogo do menu
+     */
     private JMenuItem novoJogo;
+    /**
+     * Item top3 do menu
+     */
     private JMenuItem top3;
+    /**
+     * Item sair do menu
+     */
     private JMenuItem sair;
+    /**
+     * Classe privada para realizar acoes com o botao da resposta certa
+     */
     private CertoActionListener cAL;
+    /**
+     * Classe privada para realizar acoes com o botao da resposta errada
+     */
     private ErradoActionListener eAL;
     /**
      * Variavel para saber o índice (array de perguntas da app) da pergunta atual
      */
     private int num;
 
+    /**
+     * Construtor de GUI
+     * @param app app
+     */
     public MeuGUI(POOTrivia app){
         super();
         this.random = new Random();
@@ -47,7 +96,6 @@ public class MeuGUI extends JFrame {
 
         menu = new JMenu("Menu");
         menuBar = new JMenuBar();
-        //TODO adicionar ações do menu
         novoJogo = new JMenuItem("Novo Jogo");
         top3 = new JMenuItem("Top 3");
         sair = new JMenuItem("Sair");
@@ -103,21 +151,21 @@ public class MeuGUI extends JFrame {
         }else{
             limpaPergunta();
             do{
-                num = random.nextInt(app.getNumeroDePerguntas());
-            }while (j.jaRespondida(app.getPerguntaNum(num)));
+                num = random.nextInt(app.getNumeroDePerguntas()); //escolher um numero random
+            }while (j.jaRespondida(app.getPerguntaNum(num))); //ate que a pergunta ainda nao tiver sido respondida
             JPanel numeroPergunta = new JPanel();
             JPanel enunciado = new JPanel();
             JPanel opcoes = new JPanel();
             numeroPergunta.setBackground(new Color(250, 207, 225));
             enunciado.setBackground(new Color(250, 207, 225));
             opcoes.setBackground(new Color(250, 207, 225));
-            Pergunta p = app.getPerguntaNum(num);
+            Pergunta p = app.getPerguntaNum(num); //pegamos a pergunta
             JLabel labelPergunta = new JLabel("Pergunta %d:".formatted(j.perguntasRespondidas() + 1));
             labelPergunta.setForeground(new Color(230, 14, 106));
             numeroPergunta.add(labelPergunta);
             enunciado.add(new JLabel(p.enunciado));
-            if (j.perguntasRespondidas() >= 3){
-                for(String s: p.getOpcoesDificil()){
+            if (j.perguntasRespondidas() >= 3){ //quando chegarmos na terceira pergunta
+                for(String s: p.getOpcoesDificil()){ //perguntas dificeis
                     JButton button = new JButton(s);
                     if(s.equals(p.resposta)) {
                         button.addActionListener(cAL);
@@ -126,7 +174,7 @@ public class MeuGUI extends JFrame {
                     }
                     opcoes.add(button);
                 }
-            }else{
+            }else{ //perguntas faceis
                 for(String s: p.getOpcoesFacil()){
                     JButton button = new JButton(s);
                     if(s.equals(p.resposta)) {
@@ -157,10 +205,12 @@ public class MeuGUI extends JFrame {
         mostraTopTres();
     }
 
+    /**
+     * Metodo para mostrar o Top 3: ele limpa o top 3, cria um novo array top 3, e faz as verificacoes necessarias com a spontuacoes
+     */
     public void mostraTopTres(){
         limpaTopTres();
         ArrayList<Jogo> top3List = app.getTop3();
-        //Verificar se tem algum jogo!!
         if(top3List.get(0).calculaPontuacao() == 0){
             topTres.add(new JLabel("Nenhum jogo com pontuação > 0 efetuado :(", JLabel.CENTER));
         }else{
@@ -178,17 +228,27 @@ public class MeuGUI extends JFrame {
         cl.show(painelPrincipal, "topTres");
     }
 
+    /**
+     * Metodo que limpa o top 3: tira todos os elementos do painel, e da reset
+     */
     public void limpaTopTres(){
         topTres.removeAll();
         topTres.revalidate();
         topTres.repaint();
     }
+
+    /**
+     * Metodo que limpa as perguntas: tira a pergunta do painel e da reset
+     */
     public void limpaPergunta(){
         pergunta.removeAll();
         pergunta.revalidate();
         pergunta.repaint();
     }
 
+    /**
+     *Classe privada que realiza acoes quando o utilizador clica em iniciar, novo jogo, top3, ou sair
+     */
     private class ButtonActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -203,6 +263,10 @@ public class MeuGUI extends JFrame {
             }
         }
     }
+
+    /**
+     * Classe privada que realiza acoes quando o utilizador escolhe o botao certo (acerta a pergunta)
+     */
     private class CertoActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -211,6 +275,9 @@ public class MeuGUI extends JFrame {
             mostraPergunta(jogo);
         }
     }
+    /**
+     * Classe privada que realiza acoes quando o utilizador escolhe um dos botoes errados (erra a pergunta)
+     */
     private class ErradoActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {

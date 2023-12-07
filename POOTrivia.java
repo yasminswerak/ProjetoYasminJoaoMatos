@@ -57,24 +57,45 @@ public class POOTrivia {
         return top3;
     }
 
+    /**
+     * Metodo para escrever um jogo em ficheiro
+     * @param j Objeto Jogo
+     */
     public void escreverFicheiroJogo(Jogo j){
         ficheiro.escreverFicheiroJogo(j);
     }
 
+    /**
+     * Metodo para obter a pergunta de inidice (num) do Array de perguntas
+     * @param num Indice da pergunta
+     * @return Objeto Pergunta
+     */
     public Pergunta getPerguntaNum(int num){
         return perguntas.get(num);
     }
-
+// getter e setter:
+    /**
+     * Getter de Perguntas
+     * @return Perguntas
+     */
     public ArrayList<Pergunta> getPerguntas() {
         return perguntas;
     }
 
+    /**
+     * Setter de Perguntas
+     * @param perguntas Perguntas
+     */
     public void setPerguntas(ArrayList<Pergunta> perguntas) {
         this.perguntas = perguntas;
     }
 
 
     //Main
+    /**
+     * Metodo Main
+     * @param args Argumentos do terminal
+     */
     public static void main(String[] args) {
         POOTrivia app = new POOTrivia();
         if (app.getNumeroDePerguntas() >= 10) {
