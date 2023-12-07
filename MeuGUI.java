@@ -5,8 +5,17 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Classe publica MeuGUi
+ */
 public class MeuGUI extends JFrame {
+    /**
+     * Objeto da classe POOTrivia
+     */
     private POOTrivia app;
+    /**
+     * Objeto da classe Jogo
+     */
     private Jogo jogo;
     private Random random;
     private CardLayout cl;
@@ -24,7 +33,7 @@ public class MeuGUI extends JFrame {
     private CertoActionListener cAL;
     private ErradoActionListener eAL;
     /**
-     * Variavel para saber o índice (array de perguntas da app) da pergunta atual!
+     * Variavel para saber o índice (array de perguntas da app) da pergunta atual
      */
     private int num;
 
@@ -78,12 +87,16 @@ public class MeuGUI extends JFrame {
         cl.show(painelPrincipal, "inicio");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setMinimumSize(new Dimension(400, 400));
+        this.setMinimumSize(new Dimension(700, 500));
         this.setSize(400, 400);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
+    /**
+     * Metodo para mostrar as perguntas
+     * @param j Jogo
+     */
     public void mostraPergunta(Jogo j){
         if(j.perguntasRespondidas() >= 5){
             acabaJogo();
@@ -131,6 +144,9 @@ public class MeuGUI extends JFrame {
         }
     }
 
+    /**
+     * Metodo usado quando o jogo termina: ela indica quantos pontos o utilizador teve, pede o seu nome e mostra o top 3
+     */
     public void acabaJogo(){
         String nome = "";
         do {
@@ -146,15 +162,15 @@ public class MeuGUI extends JFrame {
         ArrayList<Jogo> top3List = app.getTop3();
         //Verificar se tem algum jogo!!
         if(top3List.get(0).calculaPontuacao() == 0){
-            topTres.add(new JLabel("Nenhum jogo efetuado :("));
+            topTres.add(new JLabel("Nenhum jogo com pontuação > 0 efetuado :(", JLabel.CENTER));
         }else{
             JLabel titulo = new JLabel("--- Top 3 ---", JLabel.CENTER);
             topTres.add(titulo);
             topTres.add(new JLabel("1º Lugar: %s - %d pontos (%s)".formatted(top3List.get(0).getNomeUtilizador(), top3List.get(0).calculaPontuacao(), top3List.get(0).getDataHora().toStringApp()), JLabel.CENTER));
-            if (top3List.get(1).calculaPontuacao() != 0) {
+            if (top3List.get(1).calculaPontuacao() != 0) { //se houver segundo lugar
                 topTres.add(new JLabel("2º Lugar: %s - %d pontos (%s)".formatted(top3List.get(1).getNomeUtilizador(), top3List.get(1).calculaPontuacao(), top3List.get(1).getDataHora().toStringApp()), JLabel.CENTER));
             }
-            if (top3List.get(2).calculaPontuacao() != 0) {
+            if (top3List.get(2).calculaPontuacao() != 0) { //se houver terceiro lugar
                 topTres.add(new JLabel("3º Lugar: %s - %d pontos (%s)".formatted(top3List.get(2).getNomeUtilizador(), top3List.get(2).calculaPontuacao(), top3List.get(2).getDataHora().toStringApp()), JLabel.CENTER));
             }
         }

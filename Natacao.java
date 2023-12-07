@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 /**
- * Classe publica Natacao filha de Desporto
+ * Classe publica Natacao filha de Desporto e que implementa Serializable
  */
 public class Natacao extends Desporto implements Serializable {
     /**
@@ -18,11 +18,20 @@ public class Natacao extends Desporto implements Serializable {
         super(enunciado, resposta);
     }
 
+    //em natacao a dificuldade nao se altera ao longo do jogo, por isso as duas retornam super.opcpes:
+    /**
+     * Metodo Override que retorna as opcoes
+     * @return  opcoes
+     */
     @Override
     public String[] getOpcoesFacil() {
         return super.opcoes;
     }
 
+    /**
+     * MetodoOverride que retorna as opcoes
+     * @return opcoes
+     */
     @Override
     public String[] getOpcoesDificil() {
         return super.opcoes;

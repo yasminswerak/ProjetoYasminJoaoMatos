@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 /**
- * Classe Ciencias filha de Pergunta
+ * Classe Ciencias filha de Pergunta e que implementa Serializable
  */
 public class Ciencias extends Pergunta implements Serializable {
     /**

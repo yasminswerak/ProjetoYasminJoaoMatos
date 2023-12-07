@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 /**
- * Classe abstrata Pergunta
+ * Classe abstrata Pergunta que implementa Serializable
  */
 public abstract class Pergunta implements Serializable {
     //atributos:
@@ -46,6 +46,11 @@ public abstract class Pergunta implements Serializable {
         this.opcoes = opcoes;
     }
 
+    /**
+     * Construor de Pergunta
+     * @param enunciado enunciado da pergunta
+     * @param resposta resposta da pergunta
+     */
     public Pergunta(String enunciado, String resposta) {
         this.enunciado = enunciado;
         this.pontos = 5;

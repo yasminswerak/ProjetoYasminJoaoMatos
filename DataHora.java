@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 /**
- * Classe publica DataHora
+ * Classe publica DataHora e que implementa Serializable
  */
 public class DataHora implements Serializable {
     //atributos:
@@ -38,10 +38,18 @@ public class DataHora implements Serializable {
         this.minuto = minuto;
     }
 
+    /**
+     * Metodo toString que formata a data e hora
+     * @return data e hora formatados
+     */
     public String toStringApp(){
         return "%02d/%02d/%04d - %02d:%02d".formatted(dia,mes,ano,hora,minuto);
     }
 
+    /**
+     * Metodo toString que formata a data e a hora (sera usado nos ficheiros)
+     * @return Data e hora formatados
+     */
     public String toStringFicheiro(){
         return "%04d%02d%02d%02d%02d".formatted(ano,mes,dia,hora,minuto);
     }

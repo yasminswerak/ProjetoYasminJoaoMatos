@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 /**
- * Classe publica Arte filha de Pergunta
+ * Classe publica Arte filha de Pergunta e que implementa Serializable
  */
 public class Arte extends Pergunta implements Serializable {
     /**

@@ -19,11 +19,19 @@ public class Ski extends Desporto implements Serializable {
         super(enunciado, resposta);
     }
 
+    // em ski a dificuldade nao se altera, por isso retornamos super.opcoes nos dois:
+    /**
+     * Metodo Override que retorna as opcoes
+     * @return opcoes
+     */
     @Override
     public String[] getOpcoesFacil() {
         return super.opcoes;
     }
-
+    /**
+     * Metodo Override que retorna as opcoes
+     * @return opcoes
+     */
     @Override
     public String[] getOpcoesDificil() {
         return super.opcoes;
