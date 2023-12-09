@@ -91,6 +91,7 @@ public abstract class Pergunta implements Serializable {
         this.resposta = resposta;
     }
 
+    //Metodos
     /**
      * Funcao abstrata
      * @return opcoes de perguntas faceis

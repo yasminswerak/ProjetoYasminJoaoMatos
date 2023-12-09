@@ -13,6 +13,7 @@ public class Futebol extends Desporto implements Serializable {
      */
     private String[] nomes, camisas;
 
+    // construtor:
     /**
      * Construtor de Desporto
      * @param enunciado Enunciado da pergunta

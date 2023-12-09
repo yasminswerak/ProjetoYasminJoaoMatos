@@ -1,1 +1,15 @@
-0;qual pintor gosta de amarelo?;van gogh;picasso,robert,romero brito,duchamp,van gogh,baschiat,keith herring
+0;Qual pintor gosta de amarelo?;Van Gogh;Picasso,Frida Kahlo,Romero Brito,Duchamp,Van Gogh,Baschiat,Keith Herring
+1;Quem foi a primeira programadora?;Ada Lovelace;Freddie Mercury,Van Gogh,Ana Malhoa,Ada Lovelace,Quim Barreiros;Marie Curie,Grace Hopper,Ada Lovelace,Katherine Johnson,Kimberly Bryant
+2;Quem é o jogador do Porto com a cabeça mais rija?;Pepe;3;Claudio Ramos,Gonçalo Ribeiro,David Carmo,Pepe,Diogo Costa;14,91,4,3,99
+3;O nadador olimpico Michael Phelps tem envergadura de 2,5m?;Falso
+4;A origem da palavra "Ski" vem da mitologia nordica, significando "Deusa do Inverno"?;Verdadeiro
+0;Quem pintou a Mona Lisa?;Leonardo da Vinci;Pablo Picasso,Vincent van Gogh,Leonardo da Vinci,Andy Warhol,Edvard Munch
+1;Qual é a fórmula química da água?;H2O;CO2,O2,N2,CH4,H2O;SO2,NO2,Cl2,H2O,NaCl
+2;Quem é o jogador com mais títulos de Melhor Jogador do Mundo pela FIFA?;Lionel Messi;10;Cristiano Ronaldo,Neymar,Lionel Messi,Andrés Iniesta,Sergio Ramos;7,9,8,11,12,10
+3;Nadar com o estômago cheio pode causar cãibras?;Falso
+4;Esquiar é um esporte praticado na água?;Falso
+0;Qual pintor é conhecido por seus autorretratos e cortar sua própria orelha?;Vincent van Gogh;Pablo Picasso,Vincent van Gogh,Rembrandt,Michelangelo,Leonardo da Vinci
+1;Qual é o elemento mais abundante na Terra?;Oxigênio;Silício,Alumínio,Ferro,Calcário,Oxigênio;Neônio,Hidrogênio,Carbono,Oxigênio
+2;Quem é o maior artilheiro da história da Copa do Mundo de Futebol?;Marta;10;Cristiano Ronaldo, Ronaldo Názaro,Gerd Müller,Marta,Romário,Manuel Neuer;7,9,13,10,11,1
+3;A natação sincronizada é um esporte olímpico desde a década de 1980?;Verdadeiro
+4;O ski alpino é um esporte praticado na neve?;Verdadeiro

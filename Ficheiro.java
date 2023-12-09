@@ -79,7 +79,7 @@ public class Ficheiro {
                 FilenameFilter filtro = new FilenameFilter() {
                     @Override
                     public boolean accept(File dir, String name) {
-                        return name.matches("pootrivia_jogo_[0-9]{12}_[A-Za-z]+.dat");
+                        return name.matches("pootrivia_jogo_[0-9]{12}_[A-Za-z]+.dat"); //jogos com o "formato" certo
                     }
                 };
                 //lê todos os ficheiros de jogo (com nome correto)
